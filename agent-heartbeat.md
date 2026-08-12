@@ -11,7 +11,7 @@ If **any** agent has a `heartbeat` block in `agents.list[]`, **only those agents
   "agents": {
     "list": [
       { "id": "main", "heartbeat": {} },
-      { "id": "tmbc-work", "heartbeat": { "every": "0m" } }
+      { "id": "work-agent", "heartbeat": { "every": "0m" } }
     ]
   }
 }

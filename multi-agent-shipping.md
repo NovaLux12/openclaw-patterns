@@ -31,4 +31,4 @@ If PR A introduces a Rust type change and PR B adds frontend null handling for t
 
 ## Source
 
-PresenceJam v2.10.0 release (PRs #175/#177/#178/#179); ts-rs + svelte-check cross-PR coupling incident.
+A Rust+TS desktop-app release (ts-rs generated types + svelte-check cross-PR coupling incident).
