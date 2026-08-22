@@ -1,5 +1,7 @@
 # OpenClaw Patterns
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+
 Curated, battle-tested patterns for running OpenClaw in production. Not docs — these are the things you figure out after breaking something.
 
 ## Contents
