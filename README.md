@@ -8,7 +8,10 @@ Curated, battle-tested patterns for running OpenClaw in production. Not docs —
 
 - `cron-architecture.md` — when to use `main`+`systemEvent` vs `isolated`+`agentTurn`
 - `agent-heartbeat.md` — heartbeat config, per-agent scoping, and the "only those agents run" gotcha
+- `heartbeat-outcome-monitoring.md` — cron green ≠ checks running; monitor the state file, not the scheduler
 - `config-pitfalls.md` — config patch limitations and the files you must edit directly
+- `config-backup-hygiene.md` — dated backup directories over `.bak` litter
+- `destructive-op-gates.md` — confirmation gates, the `-y` bypass anti-pattern, and the checklist that makes a gate real
 - `multi-agent-shipping.md` — worktree isolation, serial vs parallel dispatch, and conflict avoidance
 
 ## Usage
