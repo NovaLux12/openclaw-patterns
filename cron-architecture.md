@@ -1,25 +1,21 @@
 # Cron architecture: main/systemEvent vs isolated/agentTurn
 
-OpenClaw cron has two fundamentally different shapes. Pick the wrong one and your work sits in a queue forever.
+**This note now lives in one place.** The canonical version — with the
+`sessionTarget`/`payload.kind` table, the decision tree, sub-isolation,
+failure alerts and the "When this bit me" section — is
+[`NovaLux12/operating-notes/cron-architecture.md`](https://github.com/NovaLux12/operating-notes/blob/main/cron-architecture.md).
 
-## The two shapes
+Two copies of one document is how a fact starts to disagree with itself, so
+this file points rather than repeats. If you are changing the rule, change the
+canonical one.
 
-| `sessionTarget` | `payload.kind` | Behaviour | Use when |
-|---|---|---|---|
-| `"main"` | `"systemEvent"` | Drops a prompt into the main session | Interactive work; needs main-session attention |
-| `"isolated"` | `"agentTurn"` | Spawns a sub-agent that does the work | Background checks, maintenance, "do this now" |
+The short form, for reference:
 
-## The failure mode to avoid
+| `sessionTarget` | `payload.kind` | Use when |
+|---|---|---|
+| `"main"` | `"systemEvent"` | Interactive work; needs main-session attention |
+| `"isolated"` | `"agentTurn"` | Background checks, maintenance, "do this now" |
 
-Writing a "check if X needs updating" prompt as a `systemEvent` to main. If main is busy, the prompt just sits there. Use `isolated agentTurn` for anything that should happen unattended.
-
-## The rule
-
-- **Interactive or needs human attention?** `main` + `systemEvent`.
-- **Should run unattended?** `isolated` + `agentTurn`.
-- **Need to bind to current session?** `current` + `agentTurn`.
-- **Need to target a specific session?** `session:<id>` + `agentTurn`.
-
-## Source
-
-AGENTS.md cron architecture reference; multiple stuck-cron incidents where `systemEvent` to main sat unprocessed for hours.
+The failure mode to avoid: writing a "check if X needs updating" prompt as a
+`systemEvent` to main. If main is busy, the prompt just sits there. Use
+`isolated agentTurn` for anything that should happen unattended.
